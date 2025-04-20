@@ -100,28 +100,22 @@ impl Board {
 }
 
 fn setup(mut commands: Commands, mut materials: ResMut<Assets<ColorMaterial>>) {
-    // Configure the main camera
     commands.spawn(Camera2dBundle::default());
 
-    // Get window dimensions
     let window_width = WINDOWS_WIDTH;
     let window_height = WINDOWS_HEIGHT;
 
-    // Define square size
     let square_size = 50.0;
 
-    // Calculate the number of squares that fit in the window
     let cols = (window_width / square_size).ceil() as i32;
     let rows = (window_height / square_size).ceil() as i32;
 
-    // Create a white material
     let sprite = Sprite {
         color: Color::WHITE,
         rect: Some(Rect::new(-30., -30., 30., 30.)),
         ..Default::default()
     };
 
-    // Spawn squares to fill the screen
     for col in 0..cols {
         for row in 0..rows {
             commands.spawn((SpriteBundle {
